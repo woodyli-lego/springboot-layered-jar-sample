@@ -53,3 +53,11 @@ docker build -t sample/layered-jar .
 ```shell
 docker run -p 8080:8080 sample/layered-jar
 ```
+
+## 小结
+
+和之前在 mvn package 的时候就分层不一样，springboot 推荐的操作方式，是 build fat-jar，然后在构建 docker image 时，再从 fat-jar
+中解压出分层结构。
+
+这样可以达到 build thin-jar 的目的，同时在开发时又避免了由于分层导致的一系列问题
+（例如需要手动指定 main class，例如 swagger generator plugin 无法工作等）。
